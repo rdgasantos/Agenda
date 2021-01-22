@@ -13,6 +13,7 @@ namespace Agenda.Repository
          Task<bool> SaveChangesAsync();
          
          //Eventos
+         Task<Event[]> GetAllEvents();
          Task<Event[]> GetAllEventsAsyncByDate(DateTime date, bool includeUsers);
          Task<Event[]> GetAllEventsAsyncByName(string name, bool includeUsers);
          Task<Event[]> GetAllEventsAsyncByType(int type, bool includeUsers);

@@ -18,6 +18,23 @@ namespace Agenda.WebAPI.Controllers
             _repo = repo;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var results =  await _repo.GetAllEvents();
+
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou");
+            }
+            
+        }
+
         [HttpGet("{EventId}")]
         public async Task<IActionResult> Get(int EventId)
         {

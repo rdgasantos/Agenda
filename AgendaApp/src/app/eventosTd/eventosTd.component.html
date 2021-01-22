@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="card list-car">
+    <h5 class="card-header">Eventos de Hoje</h5>
+    <div class="card-body">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Local</th>
+              <th scope="col">Data</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let evento of eventos">
+              <td>{{evento.nome}}</td>
+              <td>{{evento.local}}</td>
+              <td>{{evento.data | dateTimeFormatedPipe}}</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary btn-sm ml-1"
+                  (click)="editEvento()" routerLink="/eventodet/{{evento.id}}">Detalhe</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+

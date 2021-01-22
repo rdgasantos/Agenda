@@ -33,7 +33,15 @@ namespace Agenda.Repository
         {
             return (await _context.SaveChangesAsync()) > 0;
         }
+         public async Task<Event[]> GetAllEvents()
+        {
+            IQueryable<Event> query = _context.Events;
 
+            query = query.AsNoTracking()
+            .OrderByDescending(c => c.Data);
+
+            return await query.ToArrayAsync();
+        }
         public async Task<Event[]> GetAllEventsAsyncByDate(DateTime date, bool includeUsers = false)
         {
             IQueryable<Event> query = _context.Events;
