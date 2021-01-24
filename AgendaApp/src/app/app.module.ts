@@ -1,8 +1,11 @@
 import { EventoService } from './_services/evento.service';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +16,8 @@ import { EventoEditComponent } from './evento-edit/evento-edit.component';
 import { EventoCreateComponent } from './evento-create/evento-create.component';
 import { EventoDeleteComponent } from './evento-delete/evento-delete.component';
 import { EventoDetalheComponent } from './evento-detalhe/evento-detalhe.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -27,14 +31,17 @@ import { FormsModule } from '@angular/forms';
       EventoEditComponent,
       EventoCreateComponent,
       EventoDeleteComponent,
-      EventoDetalheComponent
+      EventoDetalheComponent,
    ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AccordionModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
 
 
   ],
