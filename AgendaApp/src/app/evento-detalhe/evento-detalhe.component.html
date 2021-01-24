@@ -6,8 +6,8 @@
       <h5 class="card-subtitle"><i class="bi bi-geo-alt-fill"></i>{{evento.local}}</h5>
       <p class="card-text mt-2">{{evento.data | dateTimeFormatedPipe }}</p>
       <p class="card-text">{{evento.descricao}}</p>
-      <p class="card-text" *ngIf="evento.tipo == 1">Evento Compartilhado</p>
-      <p class="card-text" *ngIf="evento.tipo == 0">Evento exclusivo</p>
+      <p class="card-text" *ngIf="evento.tipo == 0">Evento Compartilhado</p>
+      <p class="card-text" *ngIf="evento.tipo == 1">Evento exclusivo</p>
       <div class="btn-group mt-2">
         <a href="#" class="btn btn-md btn-warning" routerLink="/eventoedit/{{evento.id}}">Editar</a>
         <a href="#" class="btn btn-md ml-2 btn-danger" routerLink="/eventodel/{{evento.id}}">Excluir</a>
@@ -16,8 +16,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 

@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { defineLocale, BsLocaleService, ptBrLocale } from 'ngx-bootstrap';
 import { Evento } from '../_models/Evento';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { error } from 'protractor';
 defineLocale('pt-br', ptBrLocale);
 
 @Component({
@@ -17,13 +19,14 @@ export class EventoCreateComponent implements OnInit {
   registerForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder, private localeService: BsLocaleService, private eventoService: EventoService, private router: Router) {
+    private fb: FormBuilder, private localeService: BsLocaleService, private eventoService: EventoService, private router: Router, private toastr: ToastrService) {
       this.localeService.use('bt-br');
      }
 
   ngOnInit() {
     this.validation();
   }
+
 
   validation(){
     this.registerForm = this.fb.group({
@@ -42,7 +45,11 @@ export class EventoCreateComponent implements OnInit {
       this.eventoService.addEvent(this.evento).subscribe(
         (novoEvento: Evento) => {
           console.log(novoEvento);
+          this.toastr.success('Evento criado com Sucesso!');
           this.router.navigate(['eventos']);
+        }, error => {
+          this.toastr.error('Erro ao tentar criar novo evento!', 'ATENÇÃO:',  {timeOut: 3000});
+          console.log(error);
         }
       );
     }

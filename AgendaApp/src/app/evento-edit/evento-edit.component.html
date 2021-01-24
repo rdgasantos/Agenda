@@ -1,9 +1,99 @@
-
-<div class="add-car">
-  <h5 class="card-header">Editar Evento</h5>
-  <div class="card-body">
-    <form>
-      <input type="text" [(ngModel)]="nome">
-    </form>
+<div class="container">
+  <div class="card">
+    <h4 class="card-header">
+      Editar Evento
+    </h4>
+    <div class="card-body">
+      <form [formGroup]="registerForm">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Nome</label>
+            <input type="text" class="form-control " [ngClass]="{'is-invalid': registerForm.controls['nome'].errors &&
+             registerForm.controls['nome'].touched}" formControlName="nome" placeholder="Insira o nome do Evento" >
+            <div *ngIf="registerForm.controls['nome'].hasError('required')
+            && registerForm.controls['nome'].touched"  class="invalid-feedback">
+              Nome obrigatório.
+            </div>
+            <div  *ngIf="registerForm.controls['nome'].hasError('minlength')
+            && registerForm.controls['nome'].touched" class="invalid-feedback">
+              Nome deve ter no mínimo 4 caracteres.
+            </div>
+            <div  *ngIf="registerForm.controls['nome'].hasError('maxlength')
+            && registerForm.controls['nome'].touched" class="invalid-feedback">
+              Nome deve ter no máximo 100 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Descrição</label>
+            <input type="text" class="form-control " [ngClass]="{'is-invalid': registerForm.controls['descricao'].errors &&
+            registerForm.controls['descricao'].touched}"
+             formControlName="descricao" placeholder="Insira a descrição do Evento" >
+            <div *ngIf="registerForm.controls['descricao'].hasError('required')"  class="invalid-feedback">
+              Descrição obrigatória.
+            </div>
+            <div *ngIf="registerForm.controls['descricao'].hasError('maxlength')" class="invalid-feedback">
+              Descrição deve ter no máximo 100 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Local</label>
+            <input type="text" class="form-control " [ngClass]="{'is-invalid': registerForm.controls['local'].errors &&
+            registerForm.controls['local'].touched}"
+             formControlName="local" placeholder="Insira o Local do Evento" >
+            <div *ngIf="registerForm.controls['local'].hasError('required')"  class="invalid-feedback">
+              Local obrigatório.
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Data e Hora</label>
+            <input type="datetime-local" class="form-control"
+            [ngClass]="{'is-invalid': registerForm.controls['data'].errors &&
+            registerForm.controls['data'].touched}"
+             formControlName="data" placeholder="Insira a data e hora do evento" >
+            <div *ngIf="registerForm.controls['data'].hasError('required')" class="invalid-feedback">
+              Data e Hora obrigatória.
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label>Tipo</label>
+            <select class="form-control" aria-label="Default select example"
+            [ngClass]="{'is-invalid': registerForm.controls['tipo'].errors &&
+            registerForm.controls['tipo'].touched}"
+             formControlName="tipo">
+              <option value="1">Exclusivo</option>
+              <option value="0">Compartilhado</option>
+            </select>
+            <div *ngIf="registerForm.controls['tipo'].hasError('required')" class="invalid-feedback">
+              Tipo obrigatório.
+            </div>
+          </div>
+        </div>
+      </form>
+      <br>
+      <div class="d-flex">
+        <button class="btn btn-primary " [disabled]="!registerForm.valid" (click)="editarEvento()">
+          Salvar
+        </button>
+        <button class="btn btn-secondary ml-auto" routerLink="/eventos">
+          Sair
+        </button>
+        <br>
+        <br>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+  <br>
+  <p>Form Value: {{registerForm.value | json}}</p>
+  <p>Form Value: {{registerForm.status | json}}</p>
+
+
+

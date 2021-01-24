@@ -30,6 +30,15 @@
               </td>
             </tr>
           </tbody>
+          <tfoot *ngIf="!eventos">
+            <tr>
+              <td colspan="7" class="text-center">
+                <h4>
+                  <br><span style="color: blue;">Nenhum evento encontrado!</span>
+                </h4>
+              </td>
+            </tr>
+          </tfoot>
         </table>
     </div>
   </div>

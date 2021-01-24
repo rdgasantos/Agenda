@@ -1,3 +1,63 @@
-<p>
-  evento-delete works!
-</p>
+<div class="container">
+  <div class="card">
+    <h4 class="card-header">
+      Você deseja excluir este evento?
+    </h4>
+    <div class="card-body">
+      <form >
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Nome</label>
+            <input type="text" class="form-control" value="{{evento.nome}}" disabled >
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Descrição</label>
+            <input type="text" class="form-control" value="{{evento.descricao}}"
+              disabled >
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Local</label>
+            <input type="text" class="form-control " value="{{evento.local}}"
+              disabled >
+          </div>
+          <div class="form-group col-md-4">
+            <label>Data e Hora</label>
+            <input type="datetime-local" class="form-control" value="{{evento.data}}"
+            disabled >
+          </div>
+          <div class="form-group col-md-2">
+            <label>Tipo</label>
+            <select class="form-control" aria-label="Default select example"
+             value="{{evento.tipo}}" disabled>
+              <option value="1">Exclusivo</option>
+              <option value="0">Compartilhado</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <br>
+      <div class="d-flex">
+        <button class="btn btn-warning" (click)="excluirEvento()">
+          EXCLUIR
+        </button>
+        <button class="btn btn-primary ml-auto" routerLink="/eventos">
+          VOLTAR
+        </button>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

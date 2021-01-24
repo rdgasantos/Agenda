@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +19,7 @@ import { EventoCreateComponent } from './evento-create/evento-create.component';
 import { EventoDeleteComponent } from './evento-delete/evento-delete.component';
 import { EventoDetalheComponent } from './evento-detalhe/evento-detalhe.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -36,8 +39,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      positionClass: 'toast-top-right'
+    }),
     AccordionModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
