@@ -43,7 +43,7 @@ namespace Agenda.WebAPI.Controllers
 
                if(await _repo.SaveChangesAsync())
                {
-                   return Created($"api/userevent/userId/{model.UserId}/eventId/{model.EventId}", model);
+                   return Ok(model);
                }
            }
            catch (System.Exception)

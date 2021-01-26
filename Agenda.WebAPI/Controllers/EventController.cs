@@ -52,7 +52,7 @@ namespace Agenda.WebAPI.Controllers
             
         }
 
-        [HttpGet("getByDate")]
+        [HttpGet("getByDate/{date}")]
         public async Task<IActionResult> Get(DateTime date)
         {
             try
@@ -102,6 +102,22 @@ namespace Agenda.WebAPI.Controllers
             }
             
         } */
+
+        [HttpGet("getByUserId/{userId}")]
+        public async Task<IActionResult> GetByUserId(int userId)
+        {
+            try
+            {
+                var results = await _repo.GetAllEventsAsyncByUser(userId);
+
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou");
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post(Event model)

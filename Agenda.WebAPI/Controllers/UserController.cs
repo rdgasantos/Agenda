@@ -36,6 +36,23 @@ namespace Agenda.WebAPI.Controllers
            }
        }
 
+       [HttpGet]
+       public async Task<IActionResult> Get()
+       {
+           try
+           {
+               var results = await _repo.GetAllUsers();
+
+               return Ok(results);
+           }
+           catch (System.Exception)
+           {
+               
+               return this.StatusCode(StatusCodes.Status500InternalServerError,
+                "Banco de Dados Falhou!");
+           }
+       }
+
        [HttpPost]
        public async Task<IActionResult> Post(User model)
        {

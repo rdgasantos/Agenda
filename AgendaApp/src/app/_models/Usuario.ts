@@ -1,4 +1,4 @@
-import { Evento } from "./Evento";
+import { Evento } from './Evento';
 
 export interface Usuario {
   id: number;
@@ -7,4 +7,5 @@ export interface Usuario {
   senha: string;
   dataNasc: Date;
   sexo: number;
+  eventos?: Evento[];
 }

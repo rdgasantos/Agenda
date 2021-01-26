@@ -21,10 +21,11 @@ namespace Agenda.Repository
          
          //Usuarios
          Task<User> GetUserAsyncById(int UserId, bool includeEvents);
-         Task<User> GetAllEventsAsyncByUser(int UserId) ;
-
+         Task<User[]> GetAllUsers();
+         
          //UsuarioEvento
          Task<UserEvent> GetUserEventAsyncById(int UserId, int EventId) ;
+         Task<UserEvent[]> GetAllEventsAsyncByUser(int UserId);
 
          //Auth
          Task<User> GetAuthenticateUser(string email, string password);

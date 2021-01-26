@@ -32,7 +32,7 @@ export class EventoDeleteComponent implements OnInit {
   excluirEvento(){
     this.eventoService.deleteEvent(this.evento.id).subscribe(
       () => {
-        this.showSucess();
+        this.toastr.success('Evento excluido!');
         this.router.navigate(['eventos']);
 
       }, error => {

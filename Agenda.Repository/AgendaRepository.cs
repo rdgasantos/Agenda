@@ -129,16 +129,27 @@ namespace Agenda.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<User> GetAllEventsAsyncByUser(int UserId)
+        public async Task<User[]> GetAllUsers()
         {
-            IQueryable<User> query = _context.Users
-            .Include(c => c.UsersEvents)
-            .ThenInclude(c => c.User);
+            IQueryable<User> query = _context.Users;
 
             query = query.AsNoTracking()
-            .Where(u => u.Id == UserId);
+            .OrderByDescending(c => c.Nome);
 
-            return await query.FirstOrDefaultAsync();
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<UserEvent[]> GetAllEventsAsyncByUser(int UserId)
+        {
+            IQueryable<UserEvent> query = _context.UsersEvents
+            .Include(c => c.Event);
+
+            query = query.AsNoTracking()
+            .OrderByDescending(c => c.Event.Data)
+            .Where(u => u.UserId == UserId);
+            
+
+            return await query.ToArrayAsync();
         }
 
         public async Task<UserEvent> GetUserEventAsyncById(int UserId, int EventId)

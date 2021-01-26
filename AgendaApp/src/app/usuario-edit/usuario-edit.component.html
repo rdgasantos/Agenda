@@ -1,3 +1,122 @@
-<p>
-  usuario-edit works!
-</p>
+<div class="row mt-4">
+  <div class="col-md-6" style="height: 450px;">
+    <div class="row col-md-12 my-auto side-heder">
+      <h1>Atualização do Usuário</h1>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="registerForm">
+      <div class="form-group required">
+        <label for="">Nome:</label>
+        <input type="text" class="form-control" formControlName="nome"
+        [ngClass]="{'is-invalid': registerForm.controls['nome'].errors &&
+                                  registerForm.controls['nome'].touched }"
+          placeholder="Insira o seu nome"/>
+        <div *ngIf="registerForm.controls['nome'].hasError('required') &&
+                    registerForm.controls['nome'].touched"
+          class="invalid-feedback">
+          Nome é obrigatório.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">E-mail:</label>
+        <input class="form-control" type="text" formControlName="email"
+          [ngClass]="{ 'is-invalid': registerForm.controls['email'].errors &&
+                                     registerForm.controls['email'].touched}"
+          placeholder="Insira seu e-mail"/>
+        <div *ngIf="registerForm.controls['email'].hasError('required') &&
+                    registerForm.controls['email'].touched"
+          class="invalid-feedback">
+          email é obrigatório.
+        </div>
+        <div *ngIf="registerForm.controls['email'].hasError('email') &&
+                    registerForm.controls['email'].touched"
+          class="invalid-feedback">
+          Deve ser um email válido.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Data de Nascimento</label>
+        <input class="form-control" type="datetime-local" formControlName="dataNasc"
+          [ngClass]="{'is-invalid': registerForm.controls['dataNasc'].errors &&
+                                    registerForm.controls['dataNasc'].touched}"
+          placeholder="Insira sua data de Nascimento"/>
+        <div *ngIf="registerForm.controls['dataNasc'].hasError('required') &&
+                    registerForm.controls['dataNasc'].touched"
+          class="invalid-feedback">
+          Data de nascimento é obrigatória.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Sexo</label>
+        <select class="form-control" type="text" formControlName="sexo"
+        [ngClass]="{'is-invalid': registerForm.controls['sexo'].errors &&
+                                  registerForm.controls['sexo'].touched}">
+          <option value="M">Masculino</option>
+          <option value="F">Feminino</option>
+        </select>
+        <div *ngIf="registerForm.controls['sexo'].hasError('required') &&
+                    registerForm.controls['sexo'].touched"
+          class="invalid-feedback">
+          Sexo é obrigatório.
+        </div>
+      </div>
+      <div >
+        <div class="form-group">
+          <label for="">Senha:</label>
+          <input class="form-control" type="password" formControlName="senha"
+            [ngClass]="{ 'is-invalid': registerForm.controls['senha'].errors &&
+                                       registerForm.controls['senha'].touched}"
+            placeholder="Digite uma Senha" />
+          <div *ngIf="registerForm.controls['senha'].hasError('minlength') &&
+            registerForm.controls['senha'].touched"
+            class="invalid-feedback">
+            Deve conter no mínimo 4 caracters.
+          </div>
+          <div *ngIf="registerForm.controls['senha'].hasError('required') &&
+                      registerForm.controls['senha'].touched"
+            class="invalid-feedback">
+            Senha é obrigatória.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Confirmar Senha:</label>
+          <input class="form-control" type="password" formControlName="confirmPassword"
+            [ngClass]="{ 'is-invalid': registerForm.controls['confirmPassword'].errors
+                         && registerForm.controls['confirmPassword'].touched
+                         ||registerForm.controls['confirmPassword'].hasError('mismatch')
+                         && registerForm.controls['confirmPassword'].touched }"
+            placeholder="Confirme a Senha" />
+          <div *ngIf="registerForm.controls['confirmPassword'].hasError('required') &&
+                      registerForm.controls['confirmPassword'].touched"
+            class="invalid-feedback">
+            Confirme a Senha.
+          </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].hasError('mismatch')
+                      && registerForm.controls['confirmPassword'].touched"
+            class="invalid-feedback">
+            Confirmação não confere
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button class="btn btn-lg btn-success btn-block" [disabled]="!registerForm.valid"
+           (click)="editarUsuario()">
+           Atualizar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Excluir usuário</div>
+  <div class="card-body">
+    <p>Atenção</p>
+    <p>Esta ação não pode ser desfeita após executada </p>
+    <button class="btn btn-danger" (click)= "excluirUsuario()">Excluir</button>
+    <button class="btn btn-primary ml-4" routerLink="eventos/{{id}}">voltar</button>
+  </div>
+</div>

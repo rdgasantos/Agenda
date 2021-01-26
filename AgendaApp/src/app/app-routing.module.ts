@@ -1,3 +1,4 @@
+import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { EventoDetalheComponent } from './evento-detalhe/evento-detalhe.component';
 import { EventosTdComponent } from './eventosTd/eventosTd.component';
 import { EventoDeleteComponent } from './evento-delete/evento-delete.component';
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'eventos',
+    path: 'eventos/:id',
     component: EventosTdComponent,
     data: { title: 'Meus Eventos'}
   },
@@ -39,7 +40,7 @@ const routes: Routes = [
     data: { title: 'Informações do evento'}
   },
   {
-    path: 'eventoadd',
+    path: 'eventoadd/:id',
     component: EventoCreateComponent,
     data: { title: 'Criar Evento'}
   },
@@ -52,6 +53,11 @@ const routes: Routes = [
     path: 'eventodel/:id',
     component: EventoDeleteComponent,
     data: { title: 'Excluir evento'}
+  },
+  {
+    path: 'usuario/:id',
+    component: UsuarioEditComponent,
+    data: { title: 'Informações do usuário'}
   },
   {
     path: '',

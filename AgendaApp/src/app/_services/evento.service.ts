@@ -1,9 +1,11 @@
+import { Usuario } from './../_models/Usuario';
 import { Evento } from './../_models/Evento';
 import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Pipe } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioEvento } from '../_models/UsuarioEvento';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,12 @@ export class EventoService {
 
   }
 
+  getEventByUser(id: number): Observable<UsuarioEvento>{
+    return this.http.get<UsuarioEvento>(`${this.baseURL}/getByUserId/${id}`)
+    .pipe(retry(2), catchError(this.handleError));
+
+  }
+
   getEvent(id: number): Observable<Evento>{
 
     return this.http.get<Evento>(`${this.baseURL}/${id}`)
@@ -30,6 +38,11 @@ export class EventoService {
   addEvent(evento: Evento): Observable<Evento>{
 
     return this.http.post<Evento>(this.baseURL, evento)
+    .pipe(retry(1), catchError(this.handleError));
+  }
+
+  addUserEvent(userEvent: UsuarioEvento): Observable<UsuarioEvento>{
+    return this.http.post<UsuarioEvento>('http://localhost:5000/api/userEvent', userEvent)
     .pipe(retry(1), catchError(this.handleError));
   }
 

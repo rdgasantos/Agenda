@@ -1,8 +1,12 @@
 <div class="container">
   <div>
-    <button class="btn btn-primary mr-auto mb-4" routerLink="/eventoadd">
+    <button class="btn btn-primary mr-4 mb-4" routerLink="/eventoadd/{{id}}">
       <i class="fa fa-plus-circle"></i>&nbsp;
-      Novo Evento
+      Novo Evento 
+    </button>
+    <button class="btn btn-secondary mb-4" routerLink="/usuario/{{id}}">
+      <i class="fa fa-user-cog"></i>&nbsp;
+      Usuario 
     </button>
   </div>
   <div class="card list-car">
@@ -13,19 +17,25 @@
             <tr>
               <th scope="col">Nome</th>
               <th scope="col">Local</th>
-              <th scope="col">Data</th>
+              <th scope="col">Data e Hora</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let evento of eventos">
-              <td>{{evento.nome}}</td>
-              <td>{{evento.local}}</td>
-              <td>{{evento.data | dateTimeFormatedPipe}}</td>
+              <td><b>{{evento.event.nome}}</b></td>
+              <td>{{evento.event.local}}</td>
+              <td>{{evento.event.data | dateTimeFormatedPipe}}</td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary btn-sm ml-1"
-                  (click)="editEvento()" routerLink="/eventodet/{{evento.id}}">Detalhe</button>
+                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}">
+                  <i class="fa fa-info-circle"></i>&nbsp;
+                  Detalhes</button>
+                  <button type="button" class="btn btn-success btn-sm ml-2"
+                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}">
+                  <i class="fa fa-share-square"></i>&nbsp;
+                  Convidar</button>
                 </div>
               </td>
             </tr>
