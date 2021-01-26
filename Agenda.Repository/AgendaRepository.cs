@@ -45,7 +45,7 @@ namespace Agenda.Repository
         public async Task<Event[]> GetAllEventsAsyncByDate(DateTime date, bool includeUsers = false)
         {
             IQueryable<Event> query = _context.Events;
-
+    
             if(includeUsers)
             {
                 query = query
@@ -146,7 +146,17 @@ namespace Agenda.Repository
             IQueryable<UserEvent> query = _context.UsersEvents;
 
             query = query.AsNoTracking()
-            .Where(ue => ue.UserId == UserId && ue.EventId ==EventId);
+            .Where(ue => (ue.UserId == UserId) && (ue.EventId ==EventId));
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetAuthenticateUser(string email, string password)
+        {
+            IQueryable<User> query = _context.Users;
+
+            query = query.AsNoTracking().Where(u => u.Email.ToLower().Contains(email.ToLower())
+            && u.Senha.ToLower().Contains(password.ToLower()));
 
             return await query.FirstOrDefaultAsync();
         }

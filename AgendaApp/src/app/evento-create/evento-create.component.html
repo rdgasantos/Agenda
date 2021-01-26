@@ -54,7 +54,7 @@
             [ngClass]="{'is-invalid': registerForm.controls['data'].errors &&
             registerForm.controls['data'].touched}"
              formControlName="data" placeholder="Insira a data e hora do evento" >
-            <div *ngIf="registerForm.controls['data'].hasError('required')" class="invalid-feedback">
+            <div *ngIf="registerForm.controls['data'].hasError('required') " class="invalid-feedback">
               Data e Hora obrigatória.
             </div>
           </div>

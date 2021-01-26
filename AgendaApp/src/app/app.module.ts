@@ -6,6 +6,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -19,6 +20,10 @@ import { EventoCreateComponent } from './evento-create/evento-create.component';
 import { EventoDeleteComponent } from './evento-delete/evento-delete.component';
 import { EventoDetalheComponent } from './evento-detalhe/evento-detalhe.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuarioCreateComponent } from './usuario-create/usuario-create.component';
+import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -30,11 +35,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       AppComponent,
       NavComponent,
       EventosTdComponent,
-      DateTimeFormatedPipePipe,
       EventoEditComponent,
       EventoCreateComponent,
       EventoDeleteComponent,
       EventoDetalheComponent,
+      UsuarioCreateComponent,
+      UsuarioEditComponent,
+      LoginComponent,
+      HomeComponent,
+      DateTimeFormatedPipePipe
+
    ],
   imports: [
     BrowserModule,
@@ -50,6 +60,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BsDropdownModule.forRoot()
 
 
   ],

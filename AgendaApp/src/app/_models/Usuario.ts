@@ -6,6 +6,5 @@ export interface Usuario {
   email: string;
   senha: string;
   dataNasc: Date;
-  tipo: number;
-  evento: Evento[];
+  sexo: number;
 }

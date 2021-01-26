@@ -26,6 +26,9 @@ namespace Agenda.Repository
          //UsuarioEvento
          Task<UserEvent> GetUserEventAsyncById(int UserId, int EventId) ;
 
+         //Auth
+         Task<User> GetAuthenticateUser(string email, string password);
+
 
 
     }

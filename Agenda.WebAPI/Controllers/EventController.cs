@@ -52,7 +52,7 @@ namespace Agenda.WebAPI.Controllers
             
         }
 
-        [HttpGet("getByDate/{date}")]
+        [HttpGet("getByDate")]
         public async Task<IActionResult> Get(DateTime date)
         {
             try

@@ -6,9 +6,28 @@ import { EventoCreateComponent } from './evento-create/evento-create.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { UsuarioCreateComponent } from './usuario-create/usuario-create.component';
 
 
 const routes: Routes = [
+
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'registration',
+        component: UsuarioCreateComponent
+      }
+    ]
+  },
+
   {
     path: 'eventos',
     component: EventosTdComponent,

@@ -1,8 +1,8 @@
-import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Evento } from './../_models/Evento';
+import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Evento } from '../_models/Evento';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -59,5 +59,16 @@ export class EventoService {
     this.toastr.warning('Não foi possível executar a operação', 'ATENÇÂO:');
     return throwError(errorMessage);
   }
+
+  getByData(data: string): Observable<Evento[]>{
+
+    const params: HttpParams = new HttpParams().set('date', data || '');
+        return this.http.get<Evento[]>(`${this.baseURL}/api/getByDate`, { params: params });
+
+
+    /* return this.http.get<Evento>(`${this.baseURL}/${data}`)
+    .pipe(retry(1), catchError(this.handleError)); */
+  }
+
 
 }
