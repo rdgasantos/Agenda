@@ -46,11 +46,10 @@ export class UsuarioEditComponent implements OnInit {
       this.usuario = Object.assign({id: this.usuario.id}, this.registerForm.value);
       this.usuarioService.updateUser(this.usuario).subscribe(
         (usuario: Usuario) => {
-          this.toastr.success("Dados atualizado com sucesso!");
-          this.router.navigate(['eventos']);
+          this.toastr.success("Dados atualizados com sucesso!");
+          this.router.navigate([`eventos/${this.id}`]);
         }, error => {
           this.toastr.error("Erro ao tentar atualizar seus dados!");
-          this.router.navigate(['eventos']);
           console.log(error);
         });
       }
@@ -63,7 +62,6 @@ export class UsuarioEditComponent implements OnInit {
         this.authService.logout();
       }, error => {
         this.toastr.error('Erro ao tentar Excluir evento!', 'ATENÇÃO:',  {timeOut: 3000});
-        this.router.navigate(['eventos']);
         console.log(error);
       }
     );

@@ -10,12 +10,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UsuarioCreateComponent } from './usuario-create/usuario-create.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
     children: [
       {
@@ -32,41 +33,42 @@ const routes: Routes = [
   {
     path: 'eventos/:id',
     component: EventosTdComponent,
-    data: { title: 'Meus Eventos'}
+    canActivate: [AuthGuard]
+
   },
   {
-    path: 'eventodet/:id',
+    path: 'eventodet/:id/:userid',
     component: EventoDetalheComponent,
-    data: { title: 'Informações do evento'}
+    canActivate: [AuthGuard]
   },
   {
     path: 'eventoadd/:id',
     component: EventoCreateComponent,
-    data: { title: 'Criar Evento'}
+    canActivate: [AuthGuard]
   },
   {
     path: 'eventoedit/:id',
     component: EventoEditComponent,
-    data: { title: 'Editar evento'}
+    canActivate: [AuthGuard]
   },
   {
     path: 'eventodel/:id',
     component: EventoDeleteComponent,
-    data: { title: 'Excluir evento'}
+    canActivate: [AuthGuard]
   },
   {
     path: 'usuario/:id',
     component: UsuarioEditComponent,
-    data: { title: 'Informações do usuário'}
+    canActivate: [AuthGuard]
   },
   {
     path: '',
-    redirectTo: 'eventos',
+    redirectTo: 'home/login',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'eventos',
+    redirectTo: 'home/login',
     pathMatch: 'full'
   }
 

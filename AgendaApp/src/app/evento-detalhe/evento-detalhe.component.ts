@@ -16,13 +16,14 @@ import { UsuarioEvento } from '../_models/UsuarioEvento';
   styleUrls: ['./evento-detalhe.component.scss']
 })
 export class EventoDetalheComponent implements OnInit {
-  
+
   evento!: Evento;
   usuarios!: Usuario[];
   usuarioEvento!: UsuarioEvento;
   modalRef!: BsModalRef;
   registerForm!: FormGroup;
   eventoId = this.route.snapshot.params['id'];
+  userId = this.route.snapshot.params['userid'];
 
   constructor(
       private router: Router
@@ -68,7 +69,7 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   convidar(){
-  
+
     this.usuarioEvento.userId = Object.assign({}, this.registerForm.value);
     this.eventService.addUserEvent(this.usuarioEvento).subscribe(
       () => {

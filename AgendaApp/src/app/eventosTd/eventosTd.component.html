@@ -2,11 +2,11 @@
   <div>
     <button class="btn btn-primary mr-4 mb-4" routerLink="/eventoadd/{{id}}">
       <i class="fa fa-plus-circle"></i>&nbsp;
-      Novo Evento 
+      Novo Evento
     </button>
     <button class="btn btn-secondary mb-4" routerLink="/usuario/{{id}}">
       <i class="fa fa-user-cog"></i>&nbsp;
-      Usuario 
+      Usuario
     </button>
   </div>
   <div class="card list-car">
@@ -29,11 +29,11 @@
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary btn-sm ml-1"
-                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}">
+                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}/{{id}}">
                   <i class="fa fa-info-circle"></i>&nbsp;
                   Detalhes</button>
                   <button type="button" class="btn btn-success btn-sm ml-2"
-                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}">
+                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}/{{id}}">
                   <i class="fa fa-share-square"></i>&nbsp;
                   Convidar</button>
                 </div>
