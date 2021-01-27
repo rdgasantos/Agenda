@@ -1,14 +1,14 @@
-import { error } from 'protractor';
+import { UsuarioEvento } from './../_models/UsuarioEvento';
+import { Evento } from '../_models/Evento';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from './../_services/usuario.service';
 import { EventoService } from './../_services/evento.service';
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Evento } from '../_models/Evento';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+import { BsModalRef} from 'ngx-bootstrap';
 import { Usuario } from '../_models/Usuario';
-import { FormGroup } from '@angular/forms';
-import { UsuarioEvento } from '../_models/UsuarioEvento';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -19,34 +19,29 @@ export class EventoDetalheComponent implements OnInit {
 
   evento!: Evento;
   usuarios!: Usuario[];
-  usuarioEvento!: UsuarioEvento;
+  usuarioEvento: UsuarioEvento = {userId:0, eventId:0};
   modalRef!: BsModalRef;
-  registerForm!: FormGroup;
+  formConvidado!: FormGroup;
   eventoId = this.route.snapshot.params['id'];
   userId = this.route.snapshot.params['userid'];
+  public esconderConvidar!: true;
+  public esconderDetalhe!: true;
 
   constructor(
-      private router: Router
-    , private route: ActivatedRoute
+      private route: ActivatedRoute
     , private eventService: EventoService
-    , private modalService: BsModalService
     , private usuarioService: UsuarioService
     , private toastr: ToastrService
+    , private formBuilder: FormBuilder
     ) { }
-
-  /* openModal(template: TemplateRef<any>){
-    this.modalRef = this.modalService.show(template);
-  } */
-
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
 
   ngOnInit() {
 
     this.getEvento();
     this.getUsuarios();
-    this.usuarioEvento.eventId = this.eventoId;
+    this.criarForm();
+    console.log(this.usuarioEvento);
+
   }
 
   getEvento() {
@@ -55,7 +50,6 @@ export class EventoDetalheComponent implements OnInit {
     .subscribe(
       (data: Evento) => {
       this.evento = data;
-      console.log(this.evento);
     });
   }
 
@@ -63,21 +57,28 @@ export class EventoDetalheComponent implements OnInit {
     this.usuarioService.getAllUsers().subscribe(
       (users: Usuario[]) => {
         this.usuarios = users;
-        console.log(this.usuarios);
-      }
-    );
+      });
   }
 
   convidar(){
-
-    this.usuarioEvento.userId = Object.assign({}, this.registerForm.value);
+    this.usuarioEvento = this.formConvidado.value;
+    this.usuarioEvento.eventId = this.route.snapshot.params['id'];
+    console.log(this.usuarioEvento);
     this.eventService.addUserEvent(this.usuarioEvento).subscribe(
       () => {
         this.toastr.success('usuário convidado com sucesso!');
+        this.formConvidado.reset();
       }, error => {
         this.toastr.error('Não foi possivel convidar', error);
       }
     );
+  }
+
+  criarForm(){
+    this.formConvidado = this.formBuilder.group({
+      userId: ['']
+    });
+
   }
 
 }

@@ -14,6 +14,7 @@ export class EventoEditComponent implements OnInit {
 
   evento!: Evento;
   registerForm!: FormGroup;
+  userId = this.route.snapshot.params['userid'];
 
   constructor( private router: Router
     , private route: ActivatedRoute
@@ -50,11 +51,11 @@ export class EventoEditComponent implements OnInit {
         (novoEvento: Evento) => {
           this.toastr.success("Evento editado com sucesso!");
           console.log(this.evento);
-          this.router.navigate(['eventos']);
+          this.router.navigate([`eventos/${this.userId}`]);
           this.eventService.getAllEvents();
           },error => {
             this.toastr.error('Erro ao tentar editar evento!', 'ATENÇÃO:',  {timeOut: 3000});
-            this.router.navigate(['eventos']);
+            this.router.navigate([`eventos/${this.userId}`]);
             console.log(error);
           }
           );

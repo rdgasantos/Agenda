@@ -1,3 +1,4 @@
+import { EventoSearchComponent } from './evento-search/evento-search.component';
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { EventoDetalheComponent } from './evento-detalhe/evento-detalhe.component';
 import { EventosTdComponent } from './eventosTd/eventosTd.component';
@@ -47,18 +48,23 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'eventoedit/:id',
+    path: 'eventoedit/:id/:userid',
     component: EventoEditComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'eventodel/:id',
+    path: 'eventodel/:id/:userid',
     component: EventoDeleteComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'usuario/:id',
     component: UsuarioEditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search',
+    component: EventoSearchComponent,
     canActivate: [AuthGuard]
   },
   {

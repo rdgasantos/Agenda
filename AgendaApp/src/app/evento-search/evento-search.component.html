@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="card add-car">
+    <h5 class="card-header">Buscar Eventos</h5>
+
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col">
+              <label for="name" class="form-label">Pesquisa por Nome</label>
+              <div class="input-group mb-3">
+                <input [(ngModel)]="pesquisaNome" id="name" name="nome" type="text" class="form-control" placeholder="Nome do evento">
+                <button class="btn btn-secondary" type="submit" id="button-addon2" (click)="buscarNome()">
+                  <i class="fas fa-search"></i>&nbsp;
+                </button>
+              </div>
+            </div>
+            <div class="col">
+              <label for="name" class="form-label">Pesquisa por Data</label>
+              <div class="input-group mb-3">
+                <input [(ngModel)]="pesquisaData" name="nome" type="date" class="form-control" placeholder="Nome do evento">
+                <button class="btn btn-secondary" type="submit" id="button-addon2" (click)="buscarData()">
+                  <i class="fas fa-search"></i>&nbsp;
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Local</th>
+              <th scope="col">Data e Hora</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let evento of eventosSearchNome">
+              <td><b>{{evento.nome}}</b></td>
+              <td>{{evento.local}}</td>
+              <td>{{evento.data | dateTimeFormatedPipe}}</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary btn-sm ml-1"
+                   routerLink="/eventodet/{{evento.id}}/{{evento.id}}">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    Detalhes
+                  </button>
+
+                  <button type="button" class="btn btn-success btn-sm ml-2"
+                   routerLink="/eventodet/{{evento.id}}/{{evento.id}}">
+                    <i class="fa fa-share-square"></i>&nbsp;
+                    Convidar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="">
+            <tr>
+              <td colspan="7" class="text-center">
+                <h4>
+                  <br><span style="color: blue;">Nenhum evento encontrado!</span>
+                </h4>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+     </div>
+{{pesquisaNome}}
+{{pesquisaData}}
+  </div>
+</div>
+
+

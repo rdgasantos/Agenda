@@ -1,4 +1,3 @@
-import { Usuario } from './../_models/Usuario';
 import { Evento } from './../_models/Evento';
 import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable, Pipe } from '@angular/core';
@@ -27,6 +26,16 @@ export class EventoService {
     return this.http.get<UsuarioEvento>(`${this.baseURL}/getByUserId/${id}`)
     .pipe(retry(2), catchError(this.handleError));
 
+  }
+
+  getEventByName(nome: string): Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${this.baseURL}/getByName/${nome}`)
+    .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getEventByDate(data: string): Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${this.baseURL}/getByDate/${data}`)
+    .pipe(retry(2), catchError(this.handleError));
   }
 
   getEvent(id: number): Observable<Evento>{

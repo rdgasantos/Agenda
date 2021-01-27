@@ -54,8 +54,7 @@ namespace Agenda.Repository
             }
 
             query = query.AsNoTracking()
-            .OrderByDescending(c => c.Data)
-            .Where(c => c.Data == date);
+            .Where(c => c.Data.Date == date);
 
             return await query.ToArrayAsync();
         }
@@ -145,7 +144,7 @@ namespace Agenda.Repository
             .Include(c => c.Event);
 
             query = query.AsNoTracking()
-            .OrderByDescending(c => c.Event.Data)
+            .OrderBy(c => c.Event.Data)
             .Where(u => u.UserId == UserId);
             
 

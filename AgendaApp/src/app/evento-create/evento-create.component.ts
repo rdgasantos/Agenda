@@ -53,6 +53,7 @@ export class EventoCreateComponent implements OnInit {
   salvarEvento(){
     if (this.registerForm.valid){
       this.evento = Object.assign({}, this.registerForm.value);
+      console.log(this.evento);
       this.eventoService.addEvent(this.evento).subscribe(
         (evento: Evento) => {
           this.model.eventId = evento.id;

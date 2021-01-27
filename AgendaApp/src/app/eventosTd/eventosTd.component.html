@@ -4,9 +4,13 @@
       <i class="fa fa-plus-circle"></i>&nbsp;
       Novo Evento
     </button>
-    <button class="btn btn-secondary mb-4" routerLink="/usuario/{{id}}">
+    <button class="btn btn-secondary mr-4 mb-4" routerLink="/usuario/{{id}}">
       <i class="fa fa-user-cog"></i>&nbsp;
       Usuario
+    </button>
+    <button class="btn btn-light mb-4" routerLink="/search">
+      <i class="fas fa-search"></i>&nbsp;
+      Pesquisar
     </button>
   </div>
   <div class="card list-car">
@@ -21,26 +25,31 @@
               <th scope="col">Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let evento of eventos">
+          <tbody >
+            <tr *ngFor="let evento of eventos" >
               <td><b>{{evento.event.nome}}</b></td>
               <td>{{evento.event.local}}</td>
               <td>{{evento.event.data | dateTimeFormatedPipe}}</td>
               <td>
                 <div class="btn-group">
+
                   <button type="button" class="btn btn-primary btn-sm ml-1"
-                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}/{{id}}">
-                  <i class="fa fa-info-circle"></i>&nbsp;
-                  Detalhes</button>
+                   routerLink="/eventodet/{{evento.event.id}}/{{id}}">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    Detalhes
+                  </button>
+
                   <button type="button" class="btn btn-success btn-sm ml-2"
-                  (click)="editEvento()" routerLink="/eventodet/{{evento.event.id}}/{{id}}">
-                  <i class="fa fa-share-square"></i>&nbsp;
-                  Convidar</button>
+                   routerLink="/eventodet/{{evento.event.id}}/{{id}}">
+                    <i class="fa fa-share-square"></i>&nbsp;
+                    Convidar
+                  </button>
+
                 </div>
               </td>
             </tr>
           </tbody>
-          <tfoot *ngIf="!eventos">
+          <tfoot *ngIf="!evento">
             <tr>
               <td colspan="7" class="text-center">
                 <h4>

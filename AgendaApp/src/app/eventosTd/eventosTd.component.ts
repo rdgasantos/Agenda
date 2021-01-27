@@ -1,7 +1,8 @@
+import { UsuarioEvento } from './../_models/UsuarioEvento';
 import { EventoService } from './../_services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UsuarioEvento } from '../_models/UsuarioEvento';
+import { NodeWithI18n } from '@angular/compiler';
 
 @Component({
   selector: 'app-eventosTd',
@@ -13,25 +14,28 @@ export class EventosTdComponent implements OnInit {
  /*  evento = {} as UsuarioEvento;
   eventos!: any; */
   evento = {} as UsuarioEvento;
-  eventos!: any;
+  eventos: any;
+  public dataAtual = new Date();
 
   id = this.route.snapshot.params['id'];
 
-  constructor(private eventoService: EventoService, private route: ActivatedRoute) { }
+  constructor(
+      private eventoService: EventoService
+    , private route: ActivatedRoute
+              ) { }
 
   ngOnInit() {
     this.getEventos();
-    console.log(Date.now());
+    console.log(this.dataAtual);
   }
 
   getEventos(){
    /*  this.eventoService.getAllEvents().subscribe( (eventos: Evento[]) => {
       this.eventos = eventos; }); */
-    
+
     this.eventoService.getEventByUser(this.id).subscribe(
         (data: UsuarioEvento) => {
           this.eventos = data;
-          console.log(this.eventos);
           //this.eventos = data.eventos;
         });
   }
@@ -39,5 +43,10 @@ export class EventosTdComponent implements OnInit {
   editEvento(){}
 
   deleteEvento(){}
+
+  dataHoje(){
+    return Date.now();
+  }
+
 
 }

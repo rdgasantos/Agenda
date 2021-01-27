@@ -1,5 +1,5 @@
-<div class="container-fluid d-flex flex-wrap">
-  <div class="card border-primary mb-3 mt-4 ml-5" style="max-width: 20rem;">
+<div class="container-fluid d-flex flex-wrap"  >
+  <div class="card border-primary mb-3 mt-4 ml-5" style="width: 50%;" >
     <div class="card">
       <h4 class="card-header">{{evento.nome | uppercase}}</h4>
       <div class="card-body">
@@ -10,31 +10,33 @@
         <p class="card-text" style="color:royalblue;" *ngIf="evento.tipo == 0">Evento Compartilhado</p>
         <p class="card-text" style="color: red;" *ngIf="evento.tipo == 1">Evento exclusivo</p>
         <div class="btn-group mt-2">
-          <a href="#" class="btn btn-md btn-warning" routerLink="/eventoedit/{{evento.id}}">Editar</a>
-          <a href="#" class="btn btn-md ml-2 btn-danger" routerLink="/eventodel/{{evento.id}}">Excluir</a>
+          <a href="#" class="btn btn-md btn-warning" routerLink="/eventoedit/{{evento.id}}/{{userId}}">Editar</a>
+          <a href="#" class="btn btn-md ml-2 btn-danger" routerLink="/eventodel/{{evento.id}}/{{userId}}">Excluir</a>
           <a routerLink="/eventos/{{userId}}">Voltar</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="card border-primary mb-3 mt-4 ml-5" style="max-width: 70rem;">
+
+
+
+  <div class="card border-primary mb-3 mt-4 ml-5" style="width: 30%;">
     <div class="card">
       <h4 class="card-header"><i class="fas fa-users mr-2" style="color: green;"></i>&nbsp;Convidar</h4>
       <div class="card-body">
         <h5 class="card-subtitle mb-4">Quem você deseja convidar para o evento:<br>{{evento.local}}</h5>
-        <form [formGroup]="registerForm">
-          <div class="input-group">
-            <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon"formControlName="id">
-              <option selected>Escolha quem você deseja convidar</option>
-              <option *ngFor="let usuario of usuarios" value="{{usuario.id}}">{{usuario.nome}}</option>
-            </select>
-          </div>
-          <button class="btn btn-success ml-2" type="button" [disabled]="!registerForm.valid" (click)="convidar()">Convidar</button>
-        </form>
+          <form [formGroup]="formConvidado">
+            <div class="form-group">
+              <label for="userId">Convide para participar</label>
+              <select class="form-control" name="userId" formControlName="userId" id="userId">
+                <option *ngFor="let usuario of usuarios"[value]="usuario.id" >{{usuario.id}} - {{usuario.nome}}</option>
+              </select>
+            </div>
+            <button class="btn btn-success ml-2" type="submit" (click)="convidar()">Convidar</button>
+         </form>
       </div>
     </div>
   </div>
 </div>
 
-<p>Form Value: {{registerForm.value | json}}</p>
-<p>Form Value: {{registerForm.status | json}}</p>
+

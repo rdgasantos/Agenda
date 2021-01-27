@@ -24,6 +24,7 @@ import { UsuarioCreateComponent } from './usuario-create/usuario-create.componen
 import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { EventoSearchComponent } from './evento-search/evento-search.component';
 
 
 
@@ -31,7 +32,7 @@ import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
       AppComponent,
       NavComponent,
       EventosTdComponent,
@@ -43,8 +44,8 @@ import { HomeComponent } from './home/home.component';
       UsuarioEditComponent,
       LoginComponent,
       HomeComponent,
-      DateTimeFormatedPipePipe
-
+      DateTimeFormatedPipePipe,
+      EventoSearchComponent
    ],
   imports: [
     BrowserModule,

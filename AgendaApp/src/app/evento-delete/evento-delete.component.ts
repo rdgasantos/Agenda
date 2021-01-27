@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EventoDeleteComponent implements OnInit {
 
   evento!: Evento;
+  userId = this.route.snapshot.params['userid'];
   constructor(private eventoService: EventoService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService){ }
 
   ngOnInit() {
@@ -33,11 +34,11 @@ export class EventoDeleteComponent implements OnInit {
     this.eventoService.deleteEvent(this.evento.id).subscribe(
       () => {
         this.toastr.success('Evento excluido!');
-        this.router.navigate(['eventos']);
+        this.router.navigate([`eventos/${this.userId}`]);
 
       }, error => {
         this.toastr.error('Erro ao tentar Excluir evento!', 'ATENÇÃO:',  {timeOut: 3000});
-        this.router.navigate(['eventos']);
+        this.router.navigate([`eventos/${this.userId}`]);
         console.log(error);
       }
     );
