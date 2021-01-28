@@ -1,41 +1,46 @@
 <div class="container-fluid d-flex flex-wrap"  >
-  <div class="card border-primary mb-3 mt-4 ml-5" style="width: 50%;" >
+  <div class="card border-dark mb-3 mt-4 ml-5" style="width: 30%;" >
     <div class="card">
       <h4 class="card-header">{{evento.nome | uppercase}}</h4>
       <div class="card-body">
-        <p class="card-text mt-2">#{{evento.id}}</p>
-        <h5 class="card-subtitle"> <i class="fa fa-map-marker-alt" style="color: green;"></i>&nbsp;{{evento.local}}</h5>
-        <p class="card-text mt-2">Data: {{evento.data | dateTimeFormatedPipe }}</p>
-        <p class="card-text">Descrição: {{evento.descricao}}</p>
-        <p class="card-text" style="color:royalblue;" *ngIf="evento.tipo == 0">Evento Compartilhado</p>
-        <p class="card-text" style="color: red;" *ngIf="evento.tipo == 1">Evento exclusivo</p>
-        <div class="btn-group mt-2">
+        <h4 class="card-text mb-4"><small>Id: </small> #{{evento.id}}</h4>
+        <h3 class="card-subtitle"> <i class="fa fa-map-marker-alt" style="color: green;"></i>&nbsp;{{evento.local}}</h3>
+        <p class="card-text mt-4">Data: <kbd>{{evento.data | dateTimeFormatedPipe }}</kbd></p>
+        <h4 class="card-text mb-4"><small>Descrição: </small>{{evento.descricao}}</h4>
+        <div class="alert alert-info" *ngIf="evento.tipo == 0">
+          <strong>Evento Compartilhado.</strong>
+        </div>
+        <div class="alert alert-warning"*ngIf="evento.tipo == 1">
+          <strong>Evento exclusivo.</strong>
+        </div>
+        <div class="btn-group mt-2 d-flex">
           <a href="#" class="btn btn-md btn-warning" routerLink="/eventoedit/{{evento.id}}/{{userId}}">Editar</a>
           <a href="#" class="btn btn-md ml-2 btn-danger" routerLink="/eventodel/{{evento.id}}/{{userId}}">Excluir</a>
-          <a routerLink="/eventos/{{userId}}">Voltar</a>
+          <a href="#" class="btn btn-md ml-2 btn-success" routerLink="/eventos/{{userId}}">Voltar</a>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="card border-dark mb-3 mt-4 ml-5" style="width: 40%;">
 
-
-  <div class="card border-primary mb-3 mt-4 ml-5" style="width: 30%;">
-    <div class="card">
       <h4 class="card-header"><i class="fas fa-users mr-2" style="color: green;"></i>&nbsp;Convidar</h4>
       <div class="card-body">
-        <h5 class="card-subtitle mb-4">Quem você deseja convidar para o evento:<br>{{evento.local}}</h5>
+        <h5 class="card-subtitle mt-2 mb-4">Quem você deseja convidar para o evento:</h5>
+        <h3 class="card-subtitle mb-4">{{evento.nome}}</h3>
           <form [formGroup]="formConvidado">
-            <div class="form-group">
-              <label for="userId">Convide para participar</label>
+            <label for="userId">Convide para participar</label>
+            <div class="form-group input-group mb-3">
               <select class="form-control" name="userId" formControlName="userId" id="userId">
                 <option *ngFor="let usuario of usuarios"[value]="usuario.id" >{{usuario.id}} - {{usuario.nome}}</option>
               </select>
+              <div class="input-group-append">
+                <button class="btn btn-success ml-2" type="submit" (click)="convidar()">Convidar</button>
+              </div>
             </div>
-            <button class="btn btn-success ml-2" type="submit" (click)="convidar()">Convidar</button>
          </form>
       </div>
-    </div>
+
   </div>
 </div>
 

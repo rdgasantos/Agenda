@@ -1,14 +1,15 @@
 <body class="text-center" data-gr-c-s-loaded="true">
   <form class="form-signin mt-5" #loginForm="ngForm" (ngSubmit)="login()">
-    <h1 class="h3 mb-3 font-weight-normal">Agenda</h1>
+    <i class="far fa-calendar" width="100" height="100"></i>
+    <h1 class="h3 mb-4 font-weight-bold">Agenda</h1>
     <label for="email" class="sr-only">E-mail</label>
     <input type="email" id="email" class="form-control" placeholder="E-mail"
     name="email" required [(ngModel)]="model.email">
     <label for="password" class="sr-only">Password</label>
     <input type="password" id="password" class="form-control" placeholder="Senha"
     name="password" required [(ngModel)]="model.password">
-    <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-    <p class="mt-4 text-muted">Cadastre-se abaixo</p>
-    <button class="btn btn-lg btn-link btn-block" (click)="router.navigate(['home/registration'])">Quero me cadastrar</button>
+    <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block mt-4" type="submit">Entrar</button>
+    <p class="mt-4 px-0 py-0 text-muted">Cadastre-se abaixo</p>
+    <button class="btn btn-lg btn-link btn-block py-0" (click)="router.navigate(['home/registration'])">Quero me cadastrar</button>
   </form>
 </body>

@@ -76,6 +76,51 @@ namespace Agenda.Repository
             return await query.ToArrayAsync();
         }
 
+         public async Task<dynamic> GetAllEventsAsyncByUserDateToday(int UserId, DateTime date)
+        {
+
+
+            IQueryable<dynamic> eventsToday =  (
+                from ue in _context.UsersEvents
+                join e in _context.Events on ue.EventId equals e.Id
+                where ue.UserId == UserId && e.Data.Date == date
+                select new {e.Id, e.Nome, e.Descricao, e.Data, e.Local, e.Tipo}
+            ).OrderBy(e => e.Data).DefaultIfEmpty();
+			
+			
+
+            /* IQueryable<dynamic> eventsToday =  (from u in _context.UsersEvents
+			.Where(p => p.UserId == UserId)
+			from t in _context.Events
+			.Where(t => t.Id == u.EventId && t.Data.Date == date)
+			.DefaultIfEmpty()
+			
+			select new
+			{
+				t.Id,
+				t.Nome,
+				t.Descricao,
+				t.Data,
+				t.Local,
+				t.Tipo
+				
+			}); */
+
+            return await eventsToday.ToListAsync();
+        }
+
+         public async Task<dynamic> GetAllEventsAsyncByUserDate(int UserId, DateTime date)
+        {
+            IQueryable<dynamic> eventsToday =  (
+                from ue in _context.UsersEvents
+                join e in _context.Events on ue.EventId equals e.Id
+                where ue.UserId == UserId && e.Data.Date != date
+                select new {e.Id, e.Nome, e.Descricao, e.Data, e.Local, e.Tipo}
+            ).DefaultIfEmpty();
+			
+            return await eventsToday.ToListAsync();
+        }
+
         public async Task<Event[]> GetAllEventsAsyncByType(int type, bool includeUsers = false)
         {
             IQueryable<Event> query = _context.Events;
@@ -156,7 +201,7 @@ namespace Agenda.Repository
             IQueryable<UserEvent> query = _context.UsersEvents;
 
             query = query.AsNoTracking()
-            .Where(ue => (ue.UserId == UserId) && (ue.EventId ==EventId));
+            .Where(ue => (ue.UserId == UserId) && (ue.EventId == EventId));
 
             return await query.FirstOrDefaultAsync();
         }
@@ -170,5 +215,7 @@ namespace Agenda.Repository
 
             return await query.FirstOrDefaultAsync();
         }
+
+       
     }
 }

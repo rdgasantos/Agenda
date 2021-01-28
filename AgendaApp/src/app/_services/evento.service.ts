@@ -38,6 +38,16 @@ export class EventoService {
     .pipe(retry(2), catchError(this.handleError));
   }
 
+  getEventByUserDate(id: number, data: string): Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${this.baseURL}/getByUserDate/${id}/${data}`)
+    .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getEventByUserDateLater(id: number, data: string): Observable<Evento[]>{
+    return this.http.get<Evento[]>(`${this.baseURL}/getByUserDateLater/${id}/${data}`)
+    .pipe(retry(2), catchError(this.handleError));
+  }
+
   getEvent(id: number): Observable<Evento>{
 
     return this.http.get<Evento>(`${this.baseURL}/${id}`)

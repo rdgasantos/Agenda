@@ -42,16 +42,10 @@
               <td>{{evento.data | dateTimeFormatedPipe}}</td>
               <td>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-primary btn-sm ml-1"
-                   routerLink="/eventodet/{{evento.id}}/{{evento.id}}">
-                    <i class="fa fa-info-circle"></i>&nbsp;
-                    Detalhes
-                  </button>
-
                   <button type="button" class="btn btn-success btn-sm ml-2"
-                   routerLink="/eventodet/{{evento.id}}/{{evento.id}}">
-                    <i class="fa fa-share-square"></i>&nbsp;
-                    Convidar
+                   (click)="participar(evento.id)">
+                   <i class="far fa-calendar-plus"></i>&nbsp;
+                    Participar
                   </button>
                 </div>
               </td>
@@ -68,8 +62,6 @@
           </tfoot>
         </table>
      </div>
-{{pesquisaNome}}
-{{pesquisaData}}
   </div>
 </div>
 

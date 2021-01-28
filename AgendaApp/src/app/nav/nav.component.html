@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand">Agenda</a>
+    <a class="navbar-brand font-weight-bold"><i class="far fa-calendar mr-3"></i>Agenda</a>
     <form class="d-flex">
       <button class="btn btn-success" (click)="logout()" *ngIf="loggedIn()" >Sair</button>
       <button class="btn btn-success" routerLink="login" *ngIf="!loggedIn()" >Entrar</button>

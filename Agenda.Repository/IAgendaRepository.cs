@@ -18,7 +18,9 @@ namespace Agenda.Repository
          Task<Event[]> GetAllEventsAsyncByName(string name, bool includeUsers);
          Task<Event[]> GetAllEventsAsyncByType(int type, bool includeUsers);
          Task<Event> GetEventAsyncById(int EventId, bool includeUsers);
-         
+         Task<dynamic> GetAllEventsAsyncByUserDateToday(int EventId, DateTime date);
+         Task<dynamic> GetAllEventsAsyncByUserDate(int EventId, DateTime date);
+
          //Usuarios
          Task<User> GetUserAsyncById(int UserId, bool includeEvents);
          Task<User[]> GetAllUsers();

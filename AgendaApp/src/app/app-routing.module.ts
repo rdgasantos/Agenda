@@ -63,7 +63,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'search',
+    path: 'search/:id',
     component: EventoSearchComponent,
     canActivate: [AuthGuard]
   },

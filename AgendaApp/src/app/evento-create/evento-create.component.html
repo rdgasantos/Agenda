@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="card">
+  <div class="card  border-primary">
     <h4 class="card-header">
-      Cadastrar Evento
+      <i class="fa fa-plus-circle mr-2"></i>&nbsp;Novo Evento
     </h4>
     <div class="card-body">
       <form [formGroup]="registerForm">
@@ -88,11 +88,5 @@
   </div>
 </div>
 
-
-
-
-  <br>
-  <p>Form Value: {{registerForm.value | json}}</p>
-  <p>Form Value: {{registerForm.status | json}}</p>
 
 

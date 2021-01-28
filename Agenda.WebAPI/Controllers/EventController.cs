@@ -69,6 +69,40 @@ namespace Agenda.WebAPI.Controllers
             
         }
 
+        [HttpGet("getByUserDate/{userId}/{date}")]
+        public async Task<IActionResult> GetByUserDate(int userId, DateTime date)
+        {
+            try
+            {
+                var results =  await _repo.GetAllEventsAsyncByUserDateToday(userId, date);
+
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou");
+            }
+            
+        }
+
+        [HttpGet("getByUserDateLater/{userId}/{date}")]
+        public async Task<IActionResult> GetByUserDateLater(int userId, DateTime date)
+        {
+            try
+            {
+                var results =  await _repo.GetAllEventsAsyncByUserDate(userId, date);
+
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de Dados Falhou");
+            }
+            
+        }
+
         [HttpGet("getByName/{name}")]
         public async Task<IActionResult> Get(string name)
         {

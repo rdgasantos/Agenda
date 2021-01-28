@@ -25,14 +25,14 @@ import { UsuarioEditComponent } from './usuario-edit/usuario-edit.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { EventoSearchComponent } from './evento-search/evento-search.component';
-
+import {DatePipe} from '@angular/common'
 
 
 
 
 
 @NgModule({
-  declarations: [	
+  declarations: [
       AppComponent,
       NavComponent,
       EventosTdComponent,
@@ -66,7 +66,8 @@ import { EventoSearchComponent } from './evento-search/evento-search.component';
 
   ],
   providers: [
-    EventoService
+    EventoService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
