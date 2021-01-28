@@ -28,7 +28,7 @@ namespace Agenda.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AgendaContext>(
-                x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IAgendaRepository, AgendaRepository>();
 
