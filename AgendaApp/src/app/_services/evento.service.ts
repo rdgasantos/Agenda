@@ -88,7 +88,7 @@ export class EventoService {
       errorMessage = `Código do erro:${error.status},` + `menssage: ${error.message}`;
     }
     console.log(errorMessage);
-    this.toastr.warning('Não foi possível executar a operação', 'ATENÇÂO:');
+    //this.toastr.warning('Não foi possível executar a operação', 'ATENÇÂO:');
     return throwError(errorMessage);
   }
 

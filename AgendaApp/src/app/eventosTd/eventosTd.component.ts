@@ -51,6 +51,7 @@ export class EventosTdComponent implements OnInit {
     this.eventoService.getEventByUserDateLater(this.id, this.today).subscribe(
           (data: Evento[]) => {
             this.eventosPr = data;
+            console.log(this.eventosPr);
           });
   }
 
